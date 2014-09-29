@@ -86,11 +86,41 @@ public class Dropzone extends Composite {
 							function(file, xhrObject, formData) {
 								handler.@com.twocentsforthoughts.dropzone.client.event.DropzoneEventHandler::onSending(Lcom/twocentsforthoughts/dropzone/client/interfaces/File;Lcom/twocentsforthoughts/dropzone/client/interfaces/FormData;Lcom/twocentsforthoughts/dropzone/client/interfaces/XHRObjet;)(file,xhrObject,formData);
 							});
-			//			dropzone.on("success",);
-			//			dropzone.on("complete",);
-			//			dropzone.on("canceled",);
-			//			dropzone.on("maxfilesreached",);
-			//			dropzone.on("maxfilesexceeded",);
+
+			dropzone
+					.on(
+							"success",
+							function(file, response) {
+								handler.@com.twocentsforthoughts.dropzone.client.event.DropzoneEventHandler::onSuccess(Lcom/twocentsforthoughts/dropzone/client/interfaces/File;Ljava/lang/String;)(file,response);
+							});
+
+			dropzone
+					.on(
+							"complete",
+							function(file) {
+								handler.@com.twocentsforthoughts.dropzone.client.event.DropzoneEventHandler::onComplete(Lcom/twocentsforthoughts/dropzone/client/interfaces/File;)(file);
+							});
+
+			dropzone
+					.on(
+							"canceled",
+							function(file) {
+								handler.@com.twocentsforthoughts.dropzone.client.event.DropzoneEventHandler::onCancelled(Lcom/twocentsforthoughts/dropzone/client/interfaces/File;)(file);
+							});
+
+			dropzone
+					.on(
+							"maxfilesreached",
+							function(file) {
+								handler.@com.twocentsforthoughts.dropzone.client.event.DropzoneEventHandler::onMaxFilesReached(Lcom/twocentsforthoughts/dropzone/client/interfaces/File;)(file);
+							});
+
+			dropzone
+					.on(
+							"maxfilesexceeded",
+							function(file) {
+								handler.@com.twocentsforthoughts.dropzone.client.event.DropzoneEventHandler::onMaxFilesExceeded(Lcom/twocentsforthoughts/dropzone/client/interfaces/File;)(file);
+							});
 
 		}
 

@@ -19,6 +19,12 @@ public class DropzoneEventHandlerAdaptor implements DropzoneEventHandler {
 	public void onError(File file, String message, XHRObjet xhrObject) {
 	}
 
+	public void onMaxFilesExceeded(File file) {
+	}
+
+	public void onMaxFilesReached(File file) {
+	}
+
 	public void onProcessing(File file) {
 	}
 

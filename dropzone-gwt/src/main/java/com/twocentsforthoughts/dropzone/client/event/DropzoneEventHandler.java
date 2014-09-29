@@ -27,7 +27,31 @@ public interface DropzoneEventHandler {
 	 */
 	void onComplete(File file);
 
+	/**
+	 * An error occured. Receives the errorMessage as second parameter and if
+	 * the error was due to the XMLHttpRequest the xhr object as third.
+	 *
+	 * @param file
+	 * @param message
+	 * @param xhrObject
+	 *            null if not present (ommited by javascript code)
+	 */
 	void onError(File file, String message, XHRObjet xhrObject);
+
+	/**
+	 * Called for each file that has been rejected because the number of files
+	 * exceeds the maxFiles limit.
+	 *
+	 * @param file
+	 */
+	void onMaxFilesExceeded(File file);
+
+	/**
+	 * Called when the number of files accepted reached the maxFiles limit.
+	 * 
+	 * @param file
+	 */
+	void onMaxFilesReached(File file);
 
 	/**
 	 * When a file gets processed (since there is a queue not all files are
