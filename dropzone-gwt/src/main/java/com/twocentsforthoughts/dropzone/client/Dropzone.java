@@ -7,9 +7,14 @@ import com.google.gwt.user.client.ui.HTML;
 import com.twocentsforthoughts.dropzone.client.event.DropzoneEventHandler;
 import com.twocentsforthoughts.dropzone.client.injector.ResourceInjector;
 import com.twocentsforthoughts.dropzone.client.injector.resources.Resources;
+import com.twocentsforthoughts.dropzone.client.interfaces.DropzoneDictonary;
 import com.twocentsforthoughts.dropzone.client.interfaces.DropzoneOptions;
 
 public class Dropzone extends Composite {
+
+	public static DropzoneDictonary dictionary() {
+		return Dictionary.create();
+	}
 
 	public static DropzoneEventHandler eventHandlers() {
 		return new DropzoneEventHandlerAdaptor();
@@ -21,25 +26,48 @@ public class Dropzone extends Composite {
 
 	private DropzoneOptions options;
 	private DropzoneEventHandler handler;
+	private DropzoneDictonary dictionary;
 
 	public Dropzone(DropzoneOptions options) {
-		this(options, null, (Resources) GWT.create(Resources.class));
+		this(options, null, null, (Resources) GWT.create(Resources.class));
+	}
+
+	public Dropzone(DropzoneOptions options, DropzoneDictonary dictionary) {
+		this(options, null, dictionary, (Resources) GWT.create(Resources.class));
 	}
 
 	public Dropzone(DropzoneOptions options, DropzoneEventHandler handler) {
-		this(options, handler, (Resources) GWT.create(Resources.class));
+		this(options, handler, null, (Resources) GWT.create(Resources.class));
 	}
 
 	public Dropzone(DropzoneOptions options, DropzoneEventHandler handler,
-			Resources resources) {
+			DropzoneDictonary dictionary) {
+		this(options, handler, dictionary, (Resources) GWT
+				.create(Resources.class));
+	}
+
+	public Dropzone(DropzoneOptions options, DropzoneEventHandler handler,
+			DropzoneDictonary dictionary, Resources resources) {
 		this.options = options;
 		this.handler = handler;
+		this.dictionary = dictionary;
 		injectResources(resources);
 		initWidget();
 	}
 
 	private native void initDropzone(Element e, DropzoneOptions options,
-			DropzoneEventHandler handler) /*-{
+			DropzoneEventHandler handler, DropzoneDictonary dictionary) /*-{
+
+		//if there is a dictionary, iterate over it and transfer the values
+
+		if (dictionary) {
+			for ( var key in dictionary) {
+				if (dictionary.hasOwnProperty(key)) {
+					options[key] = dictionary[key];
+				}
+			}
+		}
+
 		var dropzone = new $wnd.Dropzone(e, options);
 
 		if (this.@com.twocentsforthoughts.dropzone.client.Dropzone::handler) {
@@ -138,7 +166,7 @@ public class Dropzone extends Composite {
 
 	@Override
 	protected void onAttach() {
-		initDropzone(getElement(), options, handler);
+		initDropzone(getElement(), options, handler, dictionary);
 	}
 
 }
