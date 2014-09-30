@@ -70,6 +70,14 @@ public class Dropzone extends Composite {
 
 		var dropzone = new $wnd.Dropzone(e, options);
 
+		//If not loaded, don't add the handlers.
+		if (!(dropzone instanceof $wnd.Dropzone)) {
+			return;
+		}
+		//I'm loaded, add the eventHandlers
+
+		//TODO: refactor this to another method
+
 		if (this.@com.twocentsforthoughts.dropzone.client.Dropzone::handler) {
 
 			dropzone

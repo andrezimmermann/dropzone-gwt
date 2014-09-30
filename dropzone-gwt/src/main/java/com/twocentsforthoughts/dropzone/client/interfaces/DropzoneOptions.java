@@ -4,8 +4,22 @@ import java.util.Collection;
 import java.util.Map;
 
 import com.google.gwt.dom.client.Element;
+import com.twocentsforthoughts.dropzone.client.event.DropzoneFallbackEvent;
 
 public interface DropzoneOptions {
+
+	/**
+	 * The default implementation of accept checks the file's mime type or
+	 * extension against this list. This is a comma separated list of mime types
+	 * or file extensions. Eg.: image/*,application/pdf,.psd. If the Dropzone is
+	 * clickable this option will be used as accept parameter on the hidden file
+	 * input as well.
+	 *
+	 * @param acceptedFiles
+	 *            This is a comma separated list of mime types or file
+	 *            extensions. Eg.: image/*,application/pdf,.psd.
+	 */
+	public void setAcceptedFiles(String acceptedFiles);
 
 	/**
 	 * This will add a link to every file preview to remove or cancel (if
@@ -16,6 +30,15 @@ public interface DropzoneOptions {
 	 * @param addRemove
 	 */
 	public void setAddRemoveLinks(boolean addRemoveLinks);
+
+	/**
+	 * When set to false you have to call myDropzone.processQueue() yourself in
+	 * order to upload the dropped files. See below for more information on
+	 * handling queues.
+	 *
+	 * @param autoProcessQueue
+	 */
+	public void setAutoProcessQueue(boolean autoProcessQueue);
 
 	/**
 	 * If true, the dropzone element itself will be clickable, if false nothing
@@ -44,9 +67,36 @@ public interface DropzoneOptions {
 	 */
 	public void setClickable(String cssSelectorOfClickableElements);
 
+	/**
+	 * is a function that gets called when the browser is not supported. The
+	 * default implementation shows the fallback input field and adds a text.
+	 *
+	 * @param fallbackHandler
+	 *            (GWT Callback)
+	 */
+	public void setFallback(DropzoneFallbackEvent fallbackHandler);
+
+	/**
+	 * If true the fallback will be forced. This is very useful to test your
+	 * server implementations first and make sure that everything works as
+	 * expected without dropzone if you experience problems, and to test how
+	 * your fallbacks will look. Defaults to false.
+	 *
+	 * @param forceFallback
+	 */
+	public void setForceFallback(boolean forceFallback);
+
 	public void setHeaders(Map<String, String> headers);
 
-	public void setMaxFiles(int maximoArquivos);
+	/**
+	 * if not null defines how many files this Dropzone handles. If it exceeds,
+	 * the event maxfilesexceeded will be called. The dropzone element gets the
+	 * class dz-max-files-reached accordingly so you can provided visual
+	 * feedback.
+	 *
+	 * @param maxFiles
+	 */
+	public void setMaxFiles(int maxFiles);
 
 	/**
 	 * in MB
@@ -85,6 +135,14 @@ public interface DropzoneOptions {
 	 * @param previewsContainer
 	 */
 	public void setPreviewsContainer(String previewsContainer);
+
+	/**
+	 * String that contains the template used for each dropped image. Change it
+	 * to fulfill your needs but make sure to properly provide all elements.
+	 *
+	 * @param previewTemplate
+	 */
+	public void setPreviewTemplate(String previewTemplate);
 
 	/**
 	 * Whether Dropzone should send multiple files in one request. If this it

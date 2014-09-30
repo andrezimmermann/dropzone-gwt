@@ -8,6 +8,7 @@ import java.util.Set;
 
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.dom.client.Element;
+import com.twocentsforthoughts.dropzone.client.event.DropzoneFallbackEvent;
 import com.twocentsforthoughts.dropzone.client.interfaces.DropzoneOptions;
 import com.twocentsforthoughts.dropzone.client.interfaces.Method;
 
@@ -30,8 +31,16 @@ class Options extends JavaScriptObject implements DropzoneOptions {
 		return this.url;
 	}-*/;
 
+	public final native void setAcceptedFiles(String acceptedFiles)/*-{
+		this.acceptedFiles = acceptedFiles;
+	}-*/;
+
 	public final native void setAddRemoveLinks(boolean addRemoveLinks) /*-{
 		this.addRemoveLinks = addRemoveLinks;
+	}-*/;
+
+	public final native void setAutoProcessQueue(boolean autoProcessQueue)/*-{
+		this.autoProcessQueue = autoProcessQueue;
 	}-*/;
 
 	public final native void setClickable(boolean clickable)/*-{
@@ -45,6 +54,16 @@ class Options extends JavaScriptObject implements DropzoneOptions {
 
 	public final native void setClickable(String cssSelectorOfClickableElements)/*-{
 		this.clickable = cssSelectorOfClickableElements;
+	}-*/;
+
+	public final native void setFallback(DropzoneFallbackEvent fallbackHandler) /*-{
+		this.fallback = function() {
+			fallbackHandler.@com.twocentsforthoughts.dropzone.client.event.DropzoneFallbackEvent::onFallback()();
+		}
+	}-*/;
+
+	public final native void setForceFallback(boolean forceFallback)/*-{
+		this.forceFallback = forceFallback;
 	}-*/;
 
 	public final void setHeaders(Map<String, String> headers) {
@@ -100,6 +119,10 @@ class Options extends JavaScriptObject implements DropzoneOptions {
 
 	public final native void setPreviewsContainer(String previewsContainer)/*-{
 		this.previewsContainer = previewsContainer;
+	}-*/;
+
+	public final native void setPreviewTemplate(String previewTemplate) /*-{
+		this.previewTemplate = previewTemplate;
 	}-*/;
 
 	public final native void setUploadMultiple(boolean uploadMultiple)/*-{
