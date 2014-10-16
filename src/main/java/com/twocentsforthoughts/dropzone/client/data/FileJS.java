@@ -10,10 +10,12 @@ public class FileJS extends JavaScriptObject implements File {
 	protected FileJS() {
 	}
 
+	@Override
 	public final native Date lastModifiedDate() /*-{
 		return this.lastModifiedDate;
 	}-*/;
 
+	@Override
 	public final native String name() /*-{
 		return this.name;
 	}-*/;

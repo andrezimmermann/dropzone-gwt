@@ -1,9 +1,17 @@
 package com.twocentsforthoughts.dropzone.client.event;
 
+import com.twocentsforthoughts.dropzone.client.Dropzone;
 import com.twocentsforthoughts.dropzone.client.interfaces.File;
 import com.twocentsforthoughts.dropzone.client.interfaces.FormData;
 import com.twocentsforthoughts.dropzone.client.interfaces.XHRObjet;
 
+/**
+ * Maps the events handlers for the {@link Dropzone}, if needed, instance your
+ * own {@link DropzoneEventHandler} and implement the required method
+ * 
+ * @author Andre
+ *
+ */
 public interface DropzoneEventHandler {
 
 	/**
@@ -48,7 +56,7 @@ public interface DropzoneEventHandler {
 
 	/**
 	 * Called when the number of files accepted reached the maxFiles limit.
-	 * 
+	 *
 	 * @param file
 	 */
 	void onMaxFilesReached(File file);
