@@ -1,28 +1,35 @@
 /* The MIT License */
-@sprite .dropzone .dz-default.dz-message {
+@
+sprite .dropzone .dz-default.dz-message {
 	gwt-image: "spritemap"
 }
 
-@sprite .dropzone .dz-preview .dz-error-mark {
+@
+sprite .dropzone .dz-preview .dz-error-mark {
 	gwt-image: "spritemap"
 }
 
-@sprite .dropzone-previews .dz-preview .dz-error-mark {
+@
+sprite .dropzone-previews .dz-preview .dz-error-mark {
 	gwt-image: "spritemap"
 }
 
-@sprite .dropzone .dz-preview .dz-success-mark {
+@
+sprite .dropzone .dz-preview .dz-success-mark {
 	gwt-image: "spritemap"
 }
 
-@sprite .dropzone-previews .dz-preview .dz-success-mark {
+@
+sprite .dropzone-previews .dz-preview .dz-success-mark {
 	gwt-image: "spritemap"
 }
 
-@external dropzone, dropzone-previews, dz-clickable, dz-message, dz-drag-hover, dz-started, dz-preview,
- dz-details, dz-filename, dz-error-message, dz-upload, dz-error-mark,  dz-success-mark, dz-square,
-  dz-progress, dz-default, dz-remove, dz-error, dz-image-preview, dz-upload,
-   dz-size, dz-file-preview, dz-processing, dz-success;
+@
+external dropzone, dropzone-previews, dz-clickable, dz-message,
+	dz-drag-hover, dz-started, dz-preview, dz-details, dz-filename,
+	dz-error-message, dz-upload, dz-error-mark, dz-success-mark, dz-square,
+	dz-progress, dz-default, dz-remove, dz-error, dz-image-preview,
+	dz-upload, dz-size, dz-file-preview, dz-processing, dz-success ;
  
 .dropzone, .dropzone *, .dropzone-previews, .dropzone-previews * {
 	-webkit-box-sizing: border-box;
@@ -300,7 +307,6 @@
 	background-repeat: no-repeat;
 }
 
-
 .dropzone .dz-preview .dz-error-mark span, .dropzone-previews .dz-preview .dz-error-mark span,
 	.dropzone .dz-preview .dz-success-mark span, .dropzone-previews .dz-preview .dz-success-mark span
 	{
@@ -339,7 +345,6 @@
 	background-repeat: repeat-x;
 	background-position: 0px -400px;
 }
-
 
 .dropzone .dz-preview.dz-success .dz-progress, .dropzone-previews .dz-preview.dz-success .dz-progress
 	{
