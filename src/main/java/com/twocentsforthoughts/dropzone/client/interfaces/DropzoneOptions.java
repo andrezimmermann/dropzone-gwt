@@ -27,7 +27,7 @@ public interface DropzoneOptions {
 	 * dictCancelUploadConfirmation and dictRemoveFile options are used for the
 	 * wording.
 	 *
-	 * @param addRemove
+	 * @param addRemoveLinks
 	 */
 	public void setAddRemoveLinks(boolean addRemoveLinks);
 
@@ -54,7 +54,7 @@ public interface DropzoneOptions {
 	 * will be clickable. Otherwise you can pass an HTML element, a CSS selector
 	 * (for multiple elements) or an array of those.
 	 *
-	 * @param clickable
+	 * @param arrayOfClickableElements
 	 */
 	public void setClickable(Collection<Element> arrayOfClickableElements);
 
@@ -63,7 +63,7 @@ public interface DropzoneOptions {
 	 * will be clickable. Otherwise you can pass an HTML element, a CSS selector
 	 * (for multiple elements) or an array of those.
 	 *
-	 * @param clickable
+	 * @param cssSelectorOfClickableElements
 	 */
 	public void setClickable(String cssSelectorOfClickableElements);
 
@@ -128,9 +128,10 @@ public interface DropzoneOptions {
 	public void setParamName(String paramName);
 
 	/**
-	 * Defines where to display the file previews – if null the Dropzone element
-	 * is used. Can be a plain HTMLElement or a CSS selector. The element should
-	 * have the dropzone-previews class so the previews are displayed properly.
+	 * Defines where to display the file previews – if null the Dropzone
+	 * element is used. Can be a plain HTMLElement or a CSS selector. The
+	 * element should have the dropzone-previews class so the previews are
+	 * displayed properly.
 	 *
 	 * @param previewsContainer
 	 */
