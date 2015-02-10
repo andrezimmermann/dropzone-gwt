@@ -77,7 +77,7 @@ class Options extends JavaScriptObject implements DropzoneOptions {
 	@Override
 	public final void setHeaders(Map<String, String> headers) {
 		if (headers == null) {
-			headers = Collections.EMPTY_MAP;
+			headers = Collections.emptyMap();
 		}
 
 		MapOverlay mapOverlay = MapOverlay.create();
