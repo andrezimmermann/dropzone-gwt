@@ -8,7 +8,7 @@ import com.google.gwt.resources.client.TextResource;
 /**
  * Interface that provides the Dropzone resources.
  *
- * @author andre
+ * @author andrezimmermann
  */
 public interface Resources extends ClientBundle {
 

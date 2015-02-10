@@ -5,13 +5,13 @@ import com.google.gwt.dom.client.Element;
 import com.google.gwt.dom.client.HeadElement;
 
 /**
- * Base class for classes that inject someting into the document header.
+ * Base class for classes that inject someting into the document header. From
+ * https://gwtbootstrap.github.io/
  *
- * @since 2.0.4.0
- * @author Carlos Alexandro Becker
- * @author Dominik Mayer
  */
 abstract class AbstractInjector {
+
+	private static HeadElement head;
 
 	/**
 	 * Gets the document header.
@@ -20,14 +20,11 @@ abstract class AbstractInjector {
 	 */
 	protected static HeadElement getHead() {
 		if (head == null) {
-			Element element = Document.get().getElementsByTagName("head")
-					.getItem(0);
+			final Element element = Document.get().getElementsByTagName("head").getItem(0);
 			assert element != null : "HTML Head element required";
-			HeadElement head = HeadElement.as(element);
+			final HeadElement head = HeadElement.as(element);
 			AbstractInjector.head = head;
 		}
 		return AbstractInjector.head;
 	}
-
-	private static HeadElement head;
 }
