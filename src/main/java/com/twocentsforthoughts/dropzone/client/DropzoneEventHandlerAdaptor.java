@@ -5,6 +5,11 @@ import com.twocentsforthoughts.dropzone.client.interfaces.File;
 import com.twocentsforthoughts.dropzone.client.interfaces.FormData;
 import com.twocentsforthoughts.dropzone.client.interfaces.XHRObjet;
 
+/**
+ * Empty implementation for the events dispatched by the Dropzone
+ * @author andrezimmermann
+ *
+ */
 public class DropzoneEventHandlerAdaptor implements DropzoneEventHandler {
 
 	@Override

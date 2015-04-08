@@ -6,6 +6,17 @@
 	<version>0.0.1</version>
 	<name>dropzone.js gwt wrapper</name>
 
+	<profiles>
+		<profile>
+			<id>doclint-java8-disable</id>
+			<activation>
+				<jdk>[1.8,)</jdk>
+			</activation>
+			<properties>
+				<javadoc.opts>-Xdoclint:none</javadoc.opts>
+			</properties>
+		</profile>
+	</profiles>
 
 
 	<dependencies>
@@ -57,9 +68,16 @@
 						<goals>
 							<goal>jar</goal>
 						</goals>
+
+						<!-- I tried to compile with JDK8 and it failed. -->
+						<!-- http://stackoverflow.com/questions/15886209/ -->
+						<configuration>
+							<additionalparam>${javadoc.opts}</additionalparam>
+						</configuration>
 					</execution>
 				</executions>
 			</plugin>
+
 
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>

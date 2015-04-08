@@ -8,7 +8,7 @@ import com.twocentsforthoughts.dropzone.client.interfaces.XHRObjet;
 /**
  * Maps the events handlers for the {@link Dropzone}, if needed, instance your
  * own {@link DropzoneEventHandler} and implement the required method
- * 
+ *
  * @author Andre
  *
  */
@@ -18,6 +18,7 @@ public interface DropzoneEventHandler {
 	 * When a file is added
 	 *
 	 * @param file
+	 *            that was added
 	 */
 	void onAddedFile(File file);
 
@@ -25,6 +26,7 @@ public interface DropzoneEventHandler {
 	 * Called when a file upload gets canceled.
 	 *
 	 * @param file
+	 *            that was cancelled
 	 */
 	void onCancelled(File file);
 
@@ -32,6 +34,7 @@ public interface DropzoneEventHandler {
 	 * Called when the upload was either successful or erroneous.
 	 *
 	 * @param file
+	 *            that was completed, either was sucess or failiture
 	 */
 	void onComplete(File file);
 
@@ -40,7 +43,9 @@ public interface DropzoneEventHandler {
 	 * the error was due to the XMLHttpRequest the xhr object as third.
 	 *
 	 * @param file
+	 *            instance
 	 * @param message
+	 *            from the error
 	 * @param xhrObject
 	 *            null if not present (ommited by javascript code)
 	 */
@@ -51,6 +56,7 @@ public interface DropzoneEventHandler {
 	 * exceeds the maxFiles limit.
 	 *
 	 * @param file
+	 *            that was rejected because of the maxFile limit
 	 */
 	void onMaxFilesExceeded(File file);
 
@@ -58,6 +64,7 @@ public interface DropzoneEventHandler {
 	 * Called when the number of files accepted reached the maxFiles limit.
 	 *
 	 * @param file
+	 *            the last file that was accepted
 	 */
 	void onMaxFilesReached(File file);
 
