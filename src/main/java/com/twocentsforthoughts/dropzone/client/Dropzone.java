@@ -1,19 +1,24 @@
 package com.twocentsforthoughts.dropzone.client;
 
+import java.util.ArrayList;
+
+import com.google.gwt.core.client.JsArray;
 import com.google.gwt.core.shared.GWT;
 import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HTML;
+import com.twocentsforthoughts.dropzone.client.data.FileJS;
 import com.twocentsforthoughts.dropzone.client.event.DropzoneEventHandler;
 import com.twocentsforthoughts.dropzone.client.injector.ResourceInjector;
 import com.twocentsforthoughts.dropzone.client.injector.resources.Resources;
 import com.twocentsforthoughts.dropzone.client.interfaces.DropzoneDictonary;
 import com.twocentsforthoughts.dropzone.client.interfaces.DropzoneOptions;
+import com.twocentsforthoughts.dropzone.client.interfaces.File;
 
 public class Dropzone extends Composite {
 
 	/**
-	 * Create the object that contains the Dictonary used by {@link Dropzone}
+	 * Create the object that contains the Dictionary used by {@link Dropzone}
 	 * 
 	 * @return a default (en-us) {@link DropzoneDictonary} instance
 	 */
@@ -184,4 +189,116 @@ public class Dropzone extends Composite {
 		super.onAttach();
 	}
 
+	/**
+	 * Add file information manually to Dropzone. Added file is not uploaded, it is just shown in the dropzone.
+	 * This feature is useful for displaying e.g. files that already exists on the server.
+	 * 
+	 * @param fileName name of file to add
+	 * @param fileSize size of file to add
+	 * @param thumbnail_url thumbnail image for file
+	 */
+	public void addFile(String fileName, Integer fileSize, String thumbnail_url) {
+		addfileNative(getElement(), fileName, fileSize, thumbnail_url);
+	}
+
+	/**
+	 * Native implementation of {@link addFile} method.
+	 * 
+	 * @param e dropzone element
+	 * @param fileName name of file to add
+	 * @param fileSize size of file to add
+	 * @param thumbnail_url thumbnail image for file
+	 */
+	private native void addfileNative(Element e, String fileName, Integer fileSize, String thumbnail_url) /*-{
+		var mockFile = { name: fileName, size: fileSize, status: $wnd.Dropzone.SUCCESS };
+
+		e.dropzone.files.push(mockFile);
+		e.dropzone.emit("addedfile", mockFile);
+		e.dropzone.emit("thumbnail", mockFile, thumbnail_url);
+		e.dropzone.emit("complete", mockFile);
+		e.dropzone.emit("success", mockFile);
+	}-*/;
+	
+	/**
+	 * Return array if all files added to dropzone.
+	 * 
+	 * @return all files added to dropzone.
+	 */
+	public ArrayList<File> getFiles() {
+		JsArray<FileJS> filesJS = getFilesNative(getElement());
+		ArrayList<File> files = new ArrayList<File>();
+		
+		if (filesJS != null)
+			for (int i=0; i<filesJS.length(); i++)
+				files.add(filesJS.get(i));
+
+		return files;
+	}
+	
+	/**
+	 * Return information about particular file added to dropzone.
+	 * 
+	 * @param i index of the file
+	 * @return file information
+	 */
+	public File getFile(int i) {
+		return getFilesNative(getElement()).get(i);
+	}
+	
+	/**
+	 * Return number of added files.
+	 * 
+	 * @return number of files
+	 */
+	public int getFilesCount() {
+		JsArray<FileJS> files = getFilesNative(getElement());
+		return files != null ? files.length() : 0;
+	}
+	
+	/**
+	 * Native implementation of {@link getFiles}
+	 * 
+	 * @param e dropzone element
+	 * @return array of {@link FileJS} elements
+	 */
+	private native JsArray<FileJS> getFilesNative(Element e) /*-{
+		return e.dropzone.files;
+	}-*/;
+	
+	/**
+	 * Removes file at index i.
+	 * 
+	 * @param i index of the file to remove.
+	 */
+	public void removeFile(int i) {
+		removeFileNative(getElement(), i);
+	}
+	
+	/**
+	 * Native implementation of {@link removeFile}
+	 * 
+	 * @param e dropzone element
+	 * @param i index of the file to remove
+	 */
+	private native void removeFileNative(Element e, int i) /*-{
+		if (e.dropzone.files[i]!=null){
+        	e.dropzone.removeFile(e.dropzone.files[0]);
+		}
+	}-*/;
+	
+	/**
+	 * Removes all files from dropzone.
+	 */
+	public void removeAllfiles() {
+		removeAllFilesNative(getElement());
+	}
+	
+	/**
+	 * Native implementation of {@link removeAllfiles}
+	 * 
+	 * @param e dropzone element
+	 */
+	private native void removeAllFilesNative(Element e) /*-{
+		e.dropzone.removeAllFiles(true);
+	}-*/;
 }
