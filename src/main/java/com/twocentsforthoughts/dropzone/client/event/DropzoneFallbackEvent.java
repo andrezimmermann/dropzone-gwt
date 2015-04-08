@@ -5,7 +5,7 @@ import com.twocentsforthoughts.dropzone.client.Dropzone;
 /**
  * A simple eventHandler for the Fallback Event
  *
- * @author Andre
+ * @author andrezimmermann
  *
  */
 public interface DropzoneFallbackEvent {

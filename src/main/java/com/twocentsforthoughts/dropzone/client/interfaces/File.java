@@ -5,7 +5,7 @@ import java.util.Date;
 /**
  * Represent a File from the Javascript File API
  *
- * @author Andre
+ * @author andre
  *
  */
 public interface File {
