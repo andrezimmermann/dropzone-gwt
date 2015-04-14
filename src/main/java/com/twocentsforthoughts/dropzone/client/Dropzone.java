@@ -68,6 +68,7 @@ public class Dropzone extends Composite {
 		this.dictionary = dictionary;
 		injectResources(resources);
 		initWidget();
+		initDropzone(getElement(), options, handler, dictionary);
 	}
 
 	private native void initDropzone(Element e, DropzoneOptions options, DropzoneEventHandler handler,
@@ -187,12 +188,6 @@ public class Dropzone extends Composite {
 
 	private void injectResources(Resources resources) {
 		ResourceInjector.configure(resources);
-	}
-
-	@Override
-	protected void onAttach() {
-		initDropzone(getElement(), options, handler, dictionary);
-		super.onAttach();
 	}
 
 	/**
