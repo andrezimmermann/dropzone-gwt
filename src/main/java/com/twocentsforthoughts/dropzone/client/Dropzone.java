@@ -22,6 +22,15 @@ import com.twocentsforthoughts.dropzone.client.interfaces.File;
  *
  */
 public class Dropzone extends Composite {
+	
+	public final static String ADDED = "added";
+	public final static String QUEUED = "queued";
+	public final static String ACCEPTED = QUEUED;
+	public final static String UPLOADING = "uploading";
+	public final static String PROCESSING = UPLOADING;
+	public final static String CANCELED = "canceled";
+	public final static String ERROR = "error";
+	public final static String SUCCESS = "success";
 
 	/**
 	 * Create the object that contains the Dictionary used by {@link Dropzone}

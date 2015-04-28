@@ -20,4 +20,14 @@ public class FileJS extends JavaScriptObject implements File {
 		return this.name;
 	}-*/;
 
+	@Override
+	public final native Integer size() /*-{
+		return this.size != null ? @java.lang.Integer::valueOf(I)(this.value) : null;
+	}-*/;
+
+	@Override
+	public final native String status() /*-{
+		return this.status;
+	}-*/;
+
 }
