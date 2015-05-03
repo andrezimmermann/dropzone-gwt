@@ -111,6 +111,10 @@
 						</goals>
 					</execution>
 				</executions>
+				<configuration>
+					<!-- See https://jira.codehaus.org/browse/MGWT-382 -->
+					<finalName>${project.build.finalName}</finalName>
+				</configuration>
 			</plugin>
 		</plugins>
 		<pluginManagement>
@@ -150,6 +154,4 @@
 			</plugins>
 		</pluginManagement>
 	</build>
-
-
 </project>
