@@ -76,20 +76,19 @@ class Options extends JavaScriptObject implements DropzoneOptions {
 
   @Override
   public final void setHeaders(Map<String, String> headers) {
-    if (headers == null) {
-      headers = Collections.emptyMap();
+    Map<String, String> currentHeader = headers;
+
+    if (currentHeader == null) {
+      currentHeader = Collections.emptyMap();
     }
 
     MapOverlay mapOverlay = MapOverlay.create();
 
-    Set<Entry<String, String>> entrySet = headers.entrySet();
-
-    for (Entry<String, String> entry : entrySet) {
+    Set<Entry<String, String>> headerEntries = currentHeader.entrySet();
+    for (Entry<String, String> entry : headerEntries) {
       mapOverlay.put(entry.getKey(), entry.getValue());
     }
-
     setHeadersJS(mapOverlay);
-
   }
 
   private final native void setHeadersJS(JavaScriptObject headers) /*-{
@@ -142,6 +141,16 @@ class Options extends JavaScriptObject implements DropzoneOptions {
                                                                       }-*/;
 
   @Override
+  public final native void setThumbnailHeight(int height) /*-{
+                                                          this.height = height;
+                                                          }-*/;
+
+  @Override
+  public final native void setThumbnailWidth(int width) /*-{
+                                                        this.width = width;
+                                                        }-*/;
+
+  @Override
   public final native void setUploadMultiple(boolean uploadMultiple)/*-{
                                                                     this.uploadMultiple = uploadMultiple;
                                                                     }-*/;
@@ -150,15 +159,5 @@ class Options extends JavaScriptObject implements DropzoneOptions {
   public final native void setUrl(String url) /*-{
                                               this.url = url;
                                               }-*/;
-
-  @Override
-  public final native void setThumbnailWidth(int width) /*-{
-                                                        this.width = width;
-                                                        }-*/;
-
-  @Override
-  public final native void setThumbnailHeight(int height) /*-{
-                                                          this.height = height;
-                                                          }-*/;
 
 }
