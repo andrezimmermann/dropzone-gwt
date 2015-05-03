@@ -19,4 +19,13 @@ public interface File {
 	 */
 	public String name();
 
+	/**
+	 * @return Size of the file referenced by the File object.
+	 */
+	public Integer size();
+	
+	/**
+	 * @return Status of the file referenced by the File object.
+	 */
+	public String status();
 }

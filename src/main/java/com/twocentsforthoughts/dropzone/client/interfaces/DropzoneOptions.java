@@ -163,4 +163,17 @@ public interface DropzoneOptions {
 	 */
 	public void setUrl(String url);
 
+	/**
+	 * If null, the ratio of the image will be used to calculate it.
+	 *
+	 * @param width
+	 */
+	public void setThumbnailWidth(int width);
+	
+	/**
+	 * The same as {@link setThumbnailWidth}. If both are null, images will not be resized.
+	 *
+	 * @param height
+	 */
+	public void setThumbnailHeight(int height);
 }
