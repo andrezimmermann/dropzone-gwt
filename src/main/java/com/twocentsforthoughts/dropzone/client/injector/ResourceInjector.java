@@ -7,6 +7,8 @@ import com.twocentsforthoughts.dropzone.client.injector.resources.Resources;
 
 public class ResourceInjector {
 
+  private static boolean configured;
+
   public static void configure(Resources resources) {
     if (!configured) {
       injectCss(resources.dropzoneCss());
@@ -25,7 +27,7 @@ public class ResourceInjector {
    * E.g. {@code .dz-filename:not(:hover )} should be written as {@code .dz-filename:not\(:hover \)}
    * Resulting css will contain an extra backslash: {@code .dz-filename:not(:hover \)} which causes
    * problems in newer browser. So, code below removes all occurrences of " \)" and provides regular css.
-   * </p> 
+   * </p>
    * @param r css resource to inject
    */
   private static void injectCss(CssResource r) {
@@ -38,6 +40,7 @@ public class ResourceInjector {
     JavaScriptInjector.inject(r.getText());
   }
 
-  private static boolean configured;
+  private ResourceInjector() {
+  }
 
 }
