@@ -1,26 +1,21 @@
 /* The MIT License */
-@
-sprite .dropzone .dz-default.dz-message {
+@sprite .dropzone .dz-default.dz-message {
 	gwt-image: "spritemap"
 }
 
-@
-sprite .dropzone .dz-preview .dz-error-mark {
+@sprite .dropzone .dz-preview .dz-error-mark {
 	gwt-image: "spritemap"
 }
 
-@
-sprite .dropzone-previews .dz-preview .dz-error-mark {
+@sprite .dropzone-previews .dz-preview .dz-error-mark {
 	gwt-image: "spritemap"
 }
 
-@
-sprite .dropzone .dz-preview .dz-success-mark {
+@sprite .dropzone .dz-preview .dz-success-mark {
 	gwt-image: "spritemap"
 }
 
-@
-sprite .dropzone-previews .dz-preview .dz-success-mark {
+@sprite .dropzone-previews .dz-preview .dz-success-mark {
 	gwt-image: "spritemap"
 }
 
