@@ -9,6 +9,9 @@ public class ResourceInjector {
 
   private static boolean configured;
 
+  private ResourceInjector() {
+  }
+
   public static void configure(Resources resources) {
     if (!configured) {
       injectCss(resources.dropzoneCss());
@@ -33,14 +36,11 @@ public class ResourceInjector {
   private static void injectCss(CssResource r) {
     String css = r.getText();
     css = css.replaceAll(" \\\\\\)", ")");
-    StyleInjector.inject(css);
+    StyleInjector.inject(css, true);
   }
 
   private static void injectJs(TextResource r) {
     JavaScriptInjector.inject(r.getText());
-  }
-
-  private ResourceInjector() {
   }
 
 }
