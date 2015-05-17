@@ -18,8 +18,7 @@ class JavaScriptInjector extends AbstractInjector {
    * {@code <script type="text/javascript">...</script>} element in the
    * document header.
    *
-   * @param javascript
-   *            the JavaScript code
+   * @param javascript the JavaScript code
    */
   public static void inject(String javascript) {
     HeadElement head = getHead();

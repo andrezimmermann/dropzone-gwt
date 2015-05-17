@@ -30,6 +30,7 @@ public class Dropzone extends Composite {
   public Dropzone(DropzoneOptions options) {
     this(options, null, null, (Resources) GWT.create(Resources.class));
   }
+
   public Dropzone(DropzoneOptions options, DropzoneDictonary dictionary) {
     this(options, null, dictionary, (Resources) GWT.create(Resources.class));
   }
@@ -74,8 +75,8 @@ public class Dropzone extends Composite {
    * Add file information manually to Dropzone. Added file is not uploaded, it is just shown in the dropzone.
    * This feature is useful for displaying e.g. files that already exists on the server.
    *
-   * @param fileName name of file to add
-   * @param fileSize size of file to add
+   * @param fileName     name of file to add
+   * @param fileSize     size of file to add
    * @param thumbnailUrl thumbnail image for file
    */
   public void addFile(String fileName, Integer fileSize, String thumbnailUrl) {
@@ -85,9 +86,9 @@ public class Dropzone extends Composite {
   /**
    * Native implementation of {@link Dropzone#addFile(String, Integer, String)} method.
    *
-   * @param e dropzone element
-   * @param fileName name of file to add
-   * @param fileSize size of file to add
+   * @param e            dropzone element
+   * @param fileName     name of file to add
+   * @param fileSize     size of file to add
    * @param thumbnailUrl thumbnail image for file
    */
   private native void addFileNative(Element e, String fileName, Integer fileSize, String thumbnailUrl) /*-{
@@ -98,7 +99,7 @@ public class Dropzone extends Composite {
                                                                                                         e.dropzone.emit("thumbnail", mockFile, thumbnailUrl);
                                                                                                         e.dropzone.emit("complete", mockFile);
                                                                                                         e.dropzone.emit("success", mockFile);
-                                                                                                        }-*/;;
+                                                                                                        }-*/;
 
   /**
    * Return information about particular file added to dropzone.
@@ -149,7 +150,7 @@ public class Dropzone extends Composite {
                                                            }-*/;
 
   private native void initDropzone(Element e, DropzoneOptions options, DropzoneEventHandler handler,
-    DropzoneDictonary dictionary)
+                                   DropzoneDictonary dictionary)
   /*-{
   //if there is a dictionary, iterate over it and transfer the values
 

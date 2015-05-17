@@ -31,6 +31,7 @@ public class ResourceInjector {
    * Resulting css will contain an extra backslash: {@code .dz-filename:not(:hover \)} which causes
    * problems in newer browser. So, code below removes all occurrences of " \)" and provides regular css.
    * </p>
+   *
    * @param r css resource to inject
    */
   private static void injectCss(CssResource r) {

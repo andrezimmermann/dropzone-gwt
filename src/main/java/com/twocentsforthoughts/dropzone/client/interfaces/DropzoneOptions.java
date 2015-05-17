@@ -1,10 +1,10 @@
 package com.twocentsforthoughts.dropzone.client.interfaces;
 
-import java.util.Collection;
-import java.util.Map;
-
 import com.google.gwt.dom.client.Element;
 import com.twocentsforthoughts.dropzone.client.event.DropzoneFallbackEvent;
+
+import java.util.Collection;
+import java.util.Map;
 
 public interface DropzoneOptions {
 
@@ -15,11 +15,10 @@ public interface DropzoneOptions {
    * clickable this option will be used as accept parameter on the hidden file
    * input as well.
    *
-   * @param acceptedFiles
-   *            This is a comma separated list of mime types or file
-   *            extensions. Eg.: image/*,application/pdf,.psd.
+   * @param acceptedFiles This is a comma separated list of mime types or file
+   *                      extensions. Eg.: image/*,application/pdf,.psd.
    */
-  public void setAcceptedFiles(String acceptedFiles);
+  void setAcceptedFiles(String acceptedFiles);
 
   /**
    * This will add a link to every file preview to remove or cancel (if
@@ -29,7 +28,7 @@ public interface DropzoneOptions {
    *
    * @param addRemoveLinks
    */
-  public void setAddRemoveLinks(boolean addRemoveLinks);
+  void setAddRemoveLinks(boolean addRemoveLinks);
 
   /**
    * When set to false you have to call myDropzone.processQueue() yourself in
@@ -38,7 +37,7 @@ public interface DropzoneOptions {
    *
    * @param autoProcessQueue
    */
-  public void setAutoProcessQueue(boolean autoProcessQueue);
+  void setAutoProcessQueue(boolean autoProcessQueue);
 
   /**
    * If true, the dropzone element itself will be clickable, if false nothing
@@ -47,7 +46,7 @@ public interface DropzoneOptions {
    *
    * @param clickable
    */
-  public void setClickable(boolean clickable);
+  void setClickable(boolean clickable);
 
   /**
    * If true, the dropzone element itself will be clickable, if false nothing
@@ -56,7 +55,7 @@ public interface DropzoneOptions {
    *
    * @param arrayOfClickableElements
    */
-  public void setClickable(Collection<Element> arrayOfClickableElements);
+  void setClickable(Collection<Element> arrayOfClickableElements);
 
   /**
    * If true, the dropzone element itself will be clickable, if false nothing
@@ -65,7 +64,7 @@ public interface DropzoneOptions {
    *
    * @param cssSelectorOfClickableElements
    */
-  public void setClickable(String cssSelectorOfClickableElements);
+  void setClickable(String cssSelectorOfClickableElements);
 
   /**
    * is a function that gets called when the browser is not supported. The
@@ -74,7 +73,7 @@ public interface DropzoneOptions {
    * @param fallbackHandler
    *            (GWT Callback)
    */
-  public void setFallback(DropzoneFallbackEvent fallbackHandler);
+  void setFallback(DropzoneFallbackEvent fallbackHandler);
 
   /**
    * If true the fallback will be forced. This is very useful to test your
@@ -84,9 +83,9 @@ public interface DropzoneOptions {
    *
    * @param forceFallback
    */
-  public void setForceFallback(boolean forceFallback);
+  void setForceFallback(boolean forceFallback);
 
-  public void setHeaders(Map<String, String> headers);
+  void setHeaders(Map<String, String> headers);
 
   /**
    * if not null defines how many files this Dropzone handles. If it exceeds,
@@ -96,19 +95,19 @@ public interface DropzoneOptions {
    *
    * @param maxFiles
    */
-  public void setMaxFiles(int maxFiles);
+  void setMaxFiles(int maxFiles);
 
   /**
    * in MB
    */
-  public void setMaxFilesize(int fileSize);
+  void setMaxFilesize(int fileSize);
 
   /**
    * Defaults to "post" and can be changed to "put" if necessary.
    *
    * @param method
    */
-  public void setMethod(Method method);
+  void setMethod(Method method);
 
   /**
    * How many file uploads to process in parallel (See the Enqueuing file
@@ -116,7 +115,7 @@ public interface DropzoneOptions {
    *
    * @param amount
    */
-  public void setParallelUploads(int amount);
+  void setParallelUploads(int amount);
 
   /**
    * The name of the file param that gets transferred. Defaults to file. NOTE:
@@ -125,7 +124,7 @@ public interface DropzoneOptions {
    *
    * @param paramName
    */
-  public void setParamName(String paramName);
+  void setParamName(String paramName);
 
   /**
    * Defines where to display the file previews – if null the Dropzone
@@ -135,7 +134,7 @@ public interface DropzoneOptions {
    *
    * @param previewsContainer
    */
-  public void setPreviewsContainer(String previewsContainer);
+  void setPreviewsContainer(String previewsContainer);
 
   /**
    * String that contains the template used for each dropped image. Change it
@@ -143,7 +142,7 @@ public interface DropzoneOptions {
    *
    * @param previewTemplate
    */
-  public void setPreviewTemplate(String previewTemplate);
+  void setPreviewTemplate(String previewTemplate);
 
   /**
    * Whether Dropzone should send multiple files in one request. If this it
@@ -153,7 +152,7 @@ public interface DropzoneOptions {
    *
    * @param multipleUploads
    */
-  public void setUploadMultiple(boolean multipleUploads);
+  void setUploadMultiple(boolean multipleUploads);
 
   /**
    * Has to be specified on elements other than form (or when the form doesn't
@@ -161,19 +160,19 @@ public interface DropzoneOptions {
    *
    * @param url
    */
-  public void setUrl(String url);
+  void setUrl(String url);
 
   /**
    * If null, the ratio of the image will be used to calculate it.
    *
    * @param width
    */
-  public void setThumbnailWidth(int width);
+  void setThumbnailWidth(int width);
 
   /**
    * The same as {@link setThumbnailWidth}. If both are null, images will not be resized.
    *
    * @param height
    */
-  public void setThumbnailHeight(int height);
+  void setThumbnailHeight(int height);
 }

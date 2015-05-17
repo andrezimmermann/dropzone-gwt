@@ -14,7 +14,7 @@ public interface Resources extends ClientBundle {
 
   /**
    * Returns the CSS file.
-   * <p>
+   * <p/>
    * Override this method to use your own CSS file.
    *
    * @return the CSS file
@@ -24,7 +24,7 @@ public interface Resources extends ClientBundle {
 
   /**
    * Returns the JS file. Version 3.10.2
-   * <p>
+   * <p/>
    * Override this method to use your own JS file.
    *
    * @return the JS file

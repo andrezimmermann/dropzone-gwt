@@ -1,16 +1,16 @@
 package com.twocentsforthoughts.dropzone.client;
 
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Map;
-import java.util.Map.Entry;
-import java.util.Set;
-
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.dom.client.Element;
 import com.twocentsforthoughts.dropzone.client.event.DropzoneFallbackEvent;
 import com.twocentsforthoughts.dropzone.client.interfaces.DropzoneOptions;
 import com.twocentsforthoughts.dropzone.client.interfaces.Method;
+
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
 
 /**
  * Wrapper for the Dropzone options
@@ -20,16 +20,21 @@ import com.twocentsforthoughts.dropzone.client.interfaces.Method;
  */
 class Options extends JavaScriptObject implements DropzoneOptions {
 
+  protected Options() {
+  }
+
   protected final static native DropzoneOptions create()/*-{
                                                         return {};
                                                         }-*/;
 
-  protected Options() {
-  }
-
   public final native String getUrl() /*-{
                                       return this.url;
                                       }-*/;
+
+  @Override
+  public final native void setUrl(String url) /*-{
+                                              this.url = url;
+                                              }-*/;
 
   @Override
   public final native void setAcceptedFiles(String acceptedFiles)/*-{
@@ -154,10 +159,5 @@ class Options extends JavaScriptObject implements DropzoneOptions {
   public final native void setUploadMultiple(boolean uploadMultiple)/*-{
                                                                     this.uploadMultiple = uploadMultiple;
                                                                     }-*/;
-
-  @Override
-  public final native void setUrl(String url) /*-{
-                                              this.url = url;
-                                              }-*/;
 
 }
