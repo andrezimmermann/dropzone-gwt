@@ -23,14 +23,7 @@ import java.util.ArrayList;
  */
 public class Dropzone extends Composite {
 
-  public final static String ADDED = "added";
-  public final static String QUEUED = "queued";
-  public final static String ACCEPTED = QUEUED;
-  public final static String UPLOADING = "uploading";
-  public final static String PROCESSING = UPLOADING;
-  public final static String CANCELED = "canceled";
-  public final static String ERROR = "error";
-  public final static String SUCCESS = "success";
+
   private final DropzoneOptions options;
   private final DropzoneEventHandler handler;
   private final DropzoneDictonary dictionary;
@@ -146,7 +139,7 @@ public class Dropzone extends Composite {
   }
 
   /**
-   * Native implementation of {@Link Dropzone.getFiles}
+   * Native implementation of {@Link Dropzone#getFiles()}
    *
    * @param e dropzone element
    * @return array of {@link FileJS} elements
