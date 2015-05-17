@@ -4,7 +4,7 @@ import com.google.gwt.dom.client.Document;
 import com.google.gwt.dom.client.HeadElement;
 import com.google.gwt.dom.client.ScriptElement;
 
-public class JavaScriptInjector extends AbstractInjector {
+class JavaScriptInjector extends AbstractInjector {
 
   private static ScriptElement createScriptElement() {
     ScriptElement script = Document.get().createScriptElement();

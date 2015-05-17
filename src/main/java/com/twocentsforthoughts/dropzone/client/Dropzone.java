@@ -1,7 +1,5 @@
 package com.twocentsforthoughts.dropzone.client;
 
-import java.util.ArrayList;
-
 import com.google.gwt.core.client.JsArray;
 import com.google.gwt.core.shared.GWT;
 import com.google.gwt.dom.client.Element;
@@ -14,6 +12,8 @@ import com.twocentsforthoughts.dropzone.client.injector.resources.Resources;
 import com.twocentsforthoughts.dropzone.client.interfaces.DropzoneDictonary;
 import com.twocentsforthoughts.dropzone.client.interfaces.DropzoneOptions;
 import com.twocentsforthoughts.dropzone.client.interfaces.File;
+
+import java.util.ArrayList;
 
 /**
  * Main class, that is used to interact
@@ -31,6 +31,33 @@ public class Dropzone extends Composite {
   public final static String CANCELED = "canceled";
   public final static String ERROR = "error";
   public final static String SUCCESS = "success";
+  private final DropzoneOptions options;
+  private final DropzoneEventHandler handler;
+  private final DropzoneDictonary dictionary;
+  public Dropzone(DropzoneOptions options) {
+    this(options, null, null, (Resources) GWT.create(Resources.class));
+  }
+  public Dropzone(DropzoneOptions options, DropzoneDictonary dictionary) {
+    this(options, null, dictionary, (Resources) GWT.create(Resources.class));
+  }
+
+  public Dropzone(DropzoneOptions options, DropzoneEventHandler handler) {
+    this(options, handler, null, (Resources) GWT.create(Resources.class));
+  }
+
+  public Dropzone(DropzoneOptions options, DropzoneEventHandler handler, DropzoneDictonary dictionary) {
+    this(options, handler, dictionary, (Resources) GWT.create(Resources.class));
+  }
+
+  public Dropzone(DropzoneOptions options, DropzoneEventHandler handler, DropzoneDictonary dictionary,
+                  Resources resources) {
+    this.options = options;
+    this.handler = handler;
+    this.dictionary = dictionary;
+    injectResources(resources);
+    initWidget();
+    initDropzone(getElement(), options, handler, dictionary);
+  }
 
   /**
    * Create the object that contains the Dictionary used by {@link Dropzone}
@@ -50,36 +77,6 @@ public class Dropzone extends Composite {
     return Options.create();
   }
 
-  private final DropzoneOptions options;
-  private final DropzoneEventHandler handler;
-  private final DropzoneDictonary dictionary;
-
-  public Dropzone(DropzoneOptions options) {
-    this(options, null, null, (Resources) GWT.create(Resources.class));
-  }
-
-  public Dropzone(DropzoneOptions options, DropzoneDictonary dictionary) {
-    this(options, null, dictionary, (Resources) GWT.create(Resources.class));
-  }
-
-  public Dropzone(DropzoneOptions options, DropzoneEventHandler handler) {
-    this(options, handler, null, (Resources) GWT.create(Resources.class));
-  }
-
-  public Dropzone(DropzoneOptions options, DropzoneEventHandler handler, DropzoneDictonary dictionary) {
-    this(options, handler, dictionary, (Resources) GWT.create(Resources.class));
-  }
-
-  public Dropzone(DropzoneOptions options, DropzoneEventHandler handler, DropzoneDictonary dictionary,
-    Resources resources) {
-    this.options = options;
-    this.handler = handler;
-    this.dictionary = dictionary;
-    injectResources(resources);
-    initWidget();
-    initDropzone(getElement(), options, handler, dictionary);
-  }
-
   /**
    * Add file information manually to Dropzone. Added file is not uploaded, it is just shown in the dropzone.
    * This feature is useful for displaying e.g. files that already exists on the server.
@@ -89,18 +86,18 @@ public class Dropzone extends Composite {
    * @param thumbnailUrl thumbnail image for file
    */
   public void addFile(String fileName, Integer fileSize, String thumbnailUrl) {
-    addfileNative(getElement(), fileName, fileSize, thumbnailUrl);
+    addFileNative(getElement(), fileName, fileSize, thumbnailUrl);
   }
 
   /**
-   * Native implementation of {@link addFile} method.
+   * Native implementation of {@link Dropzone#addFile(String, Integer, String)} method.
    *
    * @param e dropzone element
    * @param fileName name of file to add
    * @param fileSize size of file to add
    * @param thumbnailUrl thumbnail image for file
    */
-  private native void addfileNative(Element e, String fileName, Integer fileSize, String thumbnailUrl) /*-{
+  private native void addFileNative(Element e, String fileName, Integer fileSize, String thumbnailUrl) /*-{
                                                                                                         var mockFile = { name: fileName, size: fileSize, status: $wnd.Dropzone.SUCCESS };
 
                                                                                                         e.dropzone.files.push(mockFile);
@@ -149,7 +146,7 @@ public class Dropzone extends Composite {
   }
 
   /**
-   * Native implementation of {@link getFiles}
+   * Native implementation of {@Link Dropzone.getFiles}
    *
    * @param e dropzone element
    * @return array of {@link FileJS} elements
@@ -280,12 +277,12 @@ public class Dropzone extends Composite {
   /**
    * Removes all files from dropzone.
    */
-  public void removeAllfiles() {
+  public void removeAllFiles() {
     removeAllFilesNative(getElement());
   }
 
   /**
-   * Native implementation of {@link removeAllfiles}
+   * Native implementation of {@link Dropzone#removeAllFiles()}
    *
    * @param e dropzone element
    */
@@ -303,7 +300,7 @@ public class Dropzone extends Composite {
   }
 
   /**
-   * Native implementation of {@link removeFile}
+   * Native implementation of {@link Dropzone#removeFile(int)}
    *
    * @param e dropzone element
    * @param i index of the file to remove
