@@ -17,8 +17,7 @@ public interface DropzoneEventHandler {
   /**
    * When a file is added
    *
-   * @param file
-   *            that was added
+   * @param file that was added
    */
   void onAddedFile(File file);
 
