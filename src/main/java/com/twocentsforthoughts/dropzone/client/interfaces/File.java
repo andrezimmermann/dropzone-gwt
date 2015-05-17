@@ -9,23 +9,23 @@ import java.util.Date;
  *
  */
 public interface File {
-	/**
-	 * @return The last modified Date of the file referenced by the File object.
-	 */
-	public Date lastModifiedDate();
+  /**
+   * @return The last modified Date of the file referenced by the File object.
+   */
+  public Date lastModifiedDate();
 
-	/**
-	 * @return The name of the file referenced by the File object.
-	 */
-	public String name();
+  /**
+   * @return The name of the file referenced by the File object.
+   */
+  public String name();
 
-	/**
-	 * @return Size of the file referenced by the File object.
-	 */
-	public Integer size();
-	
-	/**
-	 * @return Status of the file referenced by the File object.
-	 */
-	public String status();
+  /**
+   * @return Size of the file referenced by the File object.
+   */
+  public Integer size();
+
+  /**
+   * @return Status of the file referenced by the File object.
+   */
+  public String status();
 }

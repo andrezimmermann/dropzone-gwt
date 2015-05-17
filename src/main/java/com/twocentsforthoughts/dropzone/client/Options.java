@@ -20,145 +20,144 @@ import com.twocentsforthoughts.dropzone.client.interfaces.Method;
  */
 class Options extends JavaScriptObject implements DropzoneOptions {
 
-	protected final static native DropzoneOptions create()/*-{
-		return {};
-	}-*/;
+  protected final static native DropzoneOptions create()/*-{
+                                                        return {};
+                                                        }-*/;
 
-	protected Options() {
-	}
+  protected Options() {
+  }
 
-	public final native String getUrl() /*-{
-		return this.url;
-	}-*/;
+  public final native String getUrl() /*-{
+                                      return this.url;
+                                      }-*/;
 
-	@Override
-	public final native void setAcceptedFiles(String acceptedFiles)/*-{
-		this.acceptedFiles = acceptedFiles;
-	}-*/;
+  @Override
+  public final native void setAcceptedFiles(String acceptedFiles)/*-{
+                                                                 this.acceptedFiles = acceptedFiles;
+                                                                 }-*/;
 
-	@Override
-	public final native void setAddRemoveLinks(boolean addRemoveLinks) /*-{
-		this.addRemoveLinks = addRemoveLinks;
-	}-*/;
+  @Override
+  public final native void setAddRemoveLinks(boolean addRemoveLinks) /*-{
+                                                                     this.addRemoveLinks = addRemoveLinks;
+                                                                     }-*/;
 
-	@Override
-	public final native void setAutoProcessQueue(boolean autoProcessQueue)/*-{
-		this.autoProcessQueue = autoProcessQueue;
-	}-*/;
+  @Override
+  public final native void setAutoProcessQueue(boolean autoProcessQueue)/*-{
+                                                                        this.autoProcessQueue = autoProcessQueue;
+                                                                        }-*/;
 
-	@Override
-	public final native void setClickable(boolean clickable)/*-{
-		this.clickable = clickable;
-	}-*/;
+  @Override
+  public final native void setClickable(boolean clickable)/*-{
+                                                          this.clickable = clickable;
+                                                          }-*/;
 
-	@Override
-	public final native void setClickable(
-			Collection<Element> arrayOfClickableElements)/*-{
-		this.clickable = arrayOfClickableElements;
-	}-*/;
+  @Override
+  public final native void setClickable(
+    Collection<Element> arrayOfClickableElements)/*-{
+                                                 this.clickable = arrayOfClickableElements;
+                                                 }-*/;
 
-	@Override
-	public final native void setClickable(String cssSelectorOfClickableElements)/*-{
-		this.clickable = cssSelectorOfClickableElements;
-	}-*/;
+  @Override
+  public final native void setClickable(String cssSelectorOfClickableElements)/*-{
+                                                                              this.clickable = cssSelectorOfClickableElements;
+                                                                              }-*/;
 
-	@Override
-	public final native void setFallback(DropzoneFallbackEvent fallbackHandler) /*-{
-		this.fallback = function() {
-			fallbackHandler.@com.twocentsforthoughts.dropzone.client.event.DropzoneFallbackEvent::onFallback()();
-		}
-	}-*/;
+  @Override
+  public final native void setFallback(DropzoneFallbackEvent fallbackHandler) /*-{
+                                                                              this.fallback = function() {
+                                                                              fallbackHandler.@com.twocentsforthoughts.dropzone.client.event.DropzoneFallbackEvent::onFallback()();
+                                                                              }
+                                                                              }-*/;
 
-	@Override
-	public final native void setForceFallback(boolean forceFallback)/*-{
-		this.forceFallback = forceFallback;
-	}-*/;
+  @Override
+  public final native void setForceFallback(boolean forceFallback)/*-{
+                                                                  this.forceFallback = forceFallback;
+                                                                  }-*/;
 
-	@Override
-	public final void setHeaders(Map<String, String> headers) {
-		if (headers == null) {
-			headers = Collections.emptyMap();
-		}
+  @Override
+  public final void setHeaders(Map<String, String> headers) {
+    Map<String, String> currentHeader = headers;
 
-		MapOverlay mapOverlay = MapOverlay.create();
+    if (currentHeader == null) {
+      currentHeader = Collections.emptyMap();
+    }
 
-		Set<Entry<String, String>> entrySet = headers.entrySet();
+    MapOverlay mapOverlay = MapOverlay.create();
 
-		for (Entry<String, String> entry : entrySet) {
-			mapOverlay.put(entry.getKey(), entry.getValue());
-		}
+    Set<Entry<String, String>> headerEntries = currentHeader.entrySet();
+    for (Entry<String, String> entry : headerEntries) {
+      mapOverlay.put(entry.getKey(), entry.getValue());
+    }
+    setHeadersJS(mapOverlay);
+  }
 
-		setHeadersJS(mapOverlay);
+  private final native void setHeadersJS(JavaScriptObject headers) /*-{
+                                                                   this.headers = headers;
+                                                                   }-*/;
 
-	}
+  @Override
+  public final native void setMaxFiles(int maxFiles) /*-{
+                                                     this.maxFiles = maxFiles;
+                                                     }-*/;
 
-	private final native void setHeadersJS(JavaScriptObject headers) /*-{
-		this.headers = headers;
-	}-*/;
+  @Override
+  public final native void setMaxFilesize(int maxFilesize) /*-{
+                                                           this.maxFilesize = maxFilesize;
+                                                           }-*/;
 
-	@Override
-	public final native void setMaxFiles(int maxFiles) /*-{
-		this.maxFiles = maxFiles;
-	}-*/;
+  @Override
+  public final void setMethod(Method method) {
 
-	@Override
-	public final native void setMaxFilesize(int maxFilesize) /*-{
-		this.maxFilesize = maxFilesize;
-	}-*/;
+    if (method != null) {
+      setMethodJS(method.toString());
+    } else {
+      setMethod(Method.POST);
+    }
 
-	@Override
-	public final void setMethod(Method method) {
+  }
 
-		if (method != null) {
-			setMethodJS(method.toString());
-		} else {
-			setMethod(Method.POST);
-		}
+  private final native void setMethodJS(String method) /*-{
+                                                       this.method = method;
+                                                       }-*/;
 
-	}
+  @Override
+  public final native void setParallelUploads(int parallelUploads) /*-{
+                                                                   this.parallelUploads = parallelUploads;
+                                                                   }-*/;
 
-	private final native void setMethodJS(String method) /*-{
-		this.method = method;
-	}-*/;
+  @Override
+  public final native void setParamName(String paramName)/*-{
+                                                         this.paramName = paramName;
+                                                         }-*/;
 
-	@Override
-	public final native void setParallelUploads(int parallelUploads) /*-{
-		this.parallelUploads = parallelUploads;
-	}-*/;
+  @Override
+  public final native void setPreviewsContainer(String previewsContainer)/*-{
+                                                                         this.previewsContainer = previewsContainer;
+                                                                         }-*/;
 
-	@Override
-	public final native void setParamName(String paramName)/*-{
-		this.paramName = paramName;
-	}-*/;
+  @Override
+  public final native void setPreviewTemplate(String previewTemplate) /*-{
+                                                                      this.previewTemplate = previewTemplate;
+                                                                      }-*/;
 
-	@Override
-	public final native void setPreviewsContainer(String previewsContainer)/*-{
-		this.previewsContainer = previewsContainer;
-	}-*/;
+  @Override
+  public final native void setThumbnailHeight(int height) /*-{
+                                                          this.height = height;
+                                                          }-*/;
 
-	@Override
-	public final native void setPreviewTemplate(String previewTemplate) /*-{
-		this.previewTemplate = previewTemplate;
-	}-*/;
+  @Override
+  public final native void setThumbnailWidth(int width) /*-{
+                                                        this.width = width;
+                                                        }-*/;
 
-	@Override
-	public final native void setUploadMultiple(boolean uploadMultiple)/*-{
-		this.uploadMultiple = uploadMultiple;
-	}-*/;
+  @Override
+  public final native void setUploadMultiple(boolean uploadMultiple)/*-{
+                                                                    this.uploadMultiple = uploadMultiple;
+                                                                    }-*/;
 
-	@Override
-	public final native void setUrl(String url) /*-{
-		this.url = url;
-	}-*/;
-
-	@Override
-	public final native void setThumbnailWidth(int width) /*-{
-		this.width = width;
-	}-*/;
-
-	@Override
-	public final native void setThumbnailHeight(int height) /*-{
-		this.height = height;
-	}-*/;
+  @Override
+  public final native void setUrl(String url) /*-{
+                                              this.url = url;
+                                              }-*/;
 
 }

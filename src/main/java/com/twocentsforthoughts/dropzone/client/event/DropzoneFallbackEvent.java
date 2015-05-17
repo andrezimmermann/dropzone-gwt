@@ -10,9 +10,9 @@ import com.twocentsforthoughts.dropzone.client.Dropzone;
  */
 public interface DropzoneFallbackEvent {
 
-	/**
-	 * Called when the {@link Dropzone} dispatch the onFallback event
-	 */
-	public void onFallback();
+  /**
+   * Called when the {@link Dropzone} dispatch the onFallback event
+   */
+  public void onFallback();
 
 }
