@@ -23,10 +23,10 @@ import java.util.ArrayList;
  */
 public class Dropzone extends Composite {
 
-
   private final DropzoneOptions options;
   private final DropzoneEventHandler handler;
   private final DropzoneDictonary dictionary;
+
   public Dropzone(DropzoneOptions options) {
     this(options, null, null, (Resources) GWT.create(Resources.class));
   }
