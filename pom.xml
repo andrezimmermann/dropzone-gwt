@@ -1,16 +1,41 @@
 <project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>twocentsforthoughts</groupId>
+	<groupId>com.twocentsforthoughts</groupId>
 	<artifactId>dropzone-gwt</artifactId>
 	<version>0.0.1</version>
-	<name>dropzone.js gwt wrapper</name>
 
+
+	<name>Dropzone-GWT</name>
+	<description>AThis is a dropzone.js GWT wrapper, production ready</description>
+	<url>https://github.com/andrezimmermann/dropzone-gwt</url>
 
 	<properties>
 		<gwt.version>2.7.0</gwt.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
+
+	<licenses>
+		<license>
+			<name>MIT License</name>
+			<url>http://www.opensource.org/licenses/mit-license.php</url>
+		</license>
+	</licenses>
+
+	<developers>
+		<developer>
+			<name>André Zimmermann</name>
+			<email>andrezimmermann@email.com</email>
+			<organization>André Zimmermann</organization>
+			<organizationUrl>https://github.com/andrezimmermann</organizationUrl>
+		</developer>
+	</developers>
+
+	<scm>
+		<url>https://github.com/andrezimmermann/dropzone-gwt</url>
+		<connection>scm:git:git://github.com/andrezimmermann/dropzone-gwt.git</connection>
+		<developerConnection>scm:git:git@github.com:andrezimmermann/dropzone-gwt.git</developerConnection>
+	</scm>
 
 	<profiles>
 		<profile>
@@ -142,6 +167,22 @@
 					<useManifestOnlyJar>false</useManifestOnlyJar>
 					<forkMode>always</forkMode>
 				</configuration>
+			</plugin>
+
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-gpg-plugin</artifactId>
+				<version>1.5</version>
+				<executions>
+					<execution>
+						<id>sign-artifacts</id>
+						<phase>verify</phase>
+						<goals>
+							<goal>sign</goal>
+						</goals>
+					</execution>
+				</executions>
 			</plugin>
 
 		</plugins>
