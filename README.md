@@ -11,6 +11,6 @@ This bundles [Dropzone.js](http://www.dropzonejs.com/) into a small GWT lib, inj
 
 ##How?
 
-Instantiate a `com.twocentsforthoughts.dropzone.client.Dropzone` widget, and add to a `Container`, see the magic happen.
+Instantiate a `com.github.andrezimmermann.dropzone.client.Dropzone` widget, and add to a `Container`, see the magic happen.
 
 [![Build Status](https://travis-ci.org/andrezimmermann/dropzone-gwt.svg?branch=master)](https://travis-ci.org/andrezimmermann/dropzone-gwt)
