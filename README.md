@@ -7,7 +7,7 @@ This is a dropzone.js GWT wrapper, somewhat usable.
 
 ## What?
 
-This bundles [Dropzone.js](http://www.dropzonejs.com/) into a small GWT lib, injecting it's Javascript and CSS files during runtime and wrapping the JSNI calls, to the Dropzone.js code, making the use of the component convenient.
+This bundles [Dropzone.js](http://www.dropzonejs.com/) into a small GWT lib, injecting it's Javascript and CSS files during runtime and wrapping the JSNI calls to the Dropzone.js code, convenitenly exposing the API as a GWT Widget.
 
 ##How?
 
