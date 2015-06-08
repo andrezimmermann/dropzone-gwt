@@ -7,7 +7,7 @@
 
 
 	<name>Dropzone-GWT</name>
-	<description>AThis is a dropzone.js GWT wrapper, production ready</description>
+	<description>This is a dropzone.js GWT wrapper, production ready</description>
 	<url>https://github.com/andrezimmermann/dropzone-gwt</url>
 
 	<properties>
@@ -84,8 +84,8 @@
 			</resource>
 
 			<resource>
-				<directory>src/main/java/com/twocentsforthoughts/dropzone/client/injector/resources</directory>
-				<targetPath>com/twocentsforthoughts/dropzone/client/injector/resources</targetPath>
+				<directory>src/main/java/com/github/andrezimmermann/dropzone/client/injector/resources</directory>
+				<targetPath>com/github/andrezimmermann/dropzone/client/injector/resources</targetPath>
 				<excludes>
 					<exclude>*.java</exclude>
 				</excludes>
