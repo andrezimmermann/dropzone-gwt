@@ -12,27 +12,27 @@ import com.google.gwt.resources.client.TextResource;
  */
 public interface Resources extends ClientBundle {
 
-  /**
-   * Returns the CSS file.
-   * <p/>
-   * Override this method to use your own CSS file.
-   *
-   * @return the CSS file
-   */
-  @Source("css/dropzone.css")
-  CssResource dropzoneCss();
+    /**
+     * Returns the CSS file.
+     * <p/>
+     * Override this method to use your own CSS file.
+     *
+     * @return the CSS file
+     */
+    @Source("css/dropzone.gss")
+    CssResource dropzoneCss();
 
-  /**
-   * Returns the JS file. Version 3.10.2
-   * <p/>
-   * Override this method to use your own JS file.
-   *
-   * @return the JS file
-   */
-  @Source("js/dropzone.min.js")
-  TextResource dropzoneJs();
+    /**
+     * Returns the JS file. Version 3.10.2
+     * <p/>
+     * Override this method to use your own JS file.
+     *
+     * @return the JS file
+     */
+    @Source("js/dropzone.min.js")
+    TextResource dropzoneJs();
 
-  @Source("images/spritemap.png")
-  ImageResource spritemap();
+    @Source("images/spritemap.png")
+    ImageResource spritemap();
 
 }
