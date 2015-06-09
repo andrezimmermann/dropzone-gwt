@@ -4,5 +4,7 @@
 	<inherits name='com.google.gwt.user.User' />
 	<!-- Specify the paths for translatable code -->
 	<source path='client' />
-
+	
+    <set-configuration-property name="CssResource.enableGss" value="true" />
+    
 </module>
