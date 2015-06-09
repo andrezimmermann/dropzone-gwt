@@ -11,20 +11,20 @@ import com.google.gwt.dom.client.HeadElement;
  */
 abstract class AbstractInjector {
 
-  private static HeadElement head;
+    private static HeadElement head;
 
-  /**
-   * Gets the document header.
-   *
-   * @return the document header
-   */
-  protected static HeadElement getHead() {
-    if (head == null) {
-      final Element element = Document.get().getElementsByTagName("head").getItem(0);
-      assert element != null : "HTML Head element required";
-      final HeadElement head = HeadElement.as(element);
-      AbstractInjector.head = head;
+    /**
+     * Gets the document header.
+     *
+     * @return the document header
+     */
+    protected static HeadElement getHead() {
+        if (head == null) {
+            final Element element = Document.get().getElementsByTagName("head").getItem(0);
+            assert element != null : "HTML Head element required";
+            final HeadElement head = HeadElement.as(element);
+            AbstractInjector.head = head;
+        }
+        return AbstractInjector.head;
     }
-    return AbstractInjector.head;
-  }
 }

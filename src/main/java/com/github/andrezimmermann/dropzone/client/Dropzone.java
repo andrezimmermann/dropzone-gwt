@@ -94,23 +94,27 @@ public class Dropzone extends Composite {
      * @param thumbnailUrl thumbnail image for file
      */
     private native void addFileNative(Element e, String fileName, Integer fileSize, String thumbnailUrl) /*-{
-                                                                                                          var mockFile = { name: fileName, size: fileSize, status: "sucess" };
+		var mockFile = {
+			name : fileName,
+			size : fileSize,
+			status : "sucess"
+		};
 
-                                                                                                          e.dropzone.files.push(mockFile);
-                                                                                                          e.dropzone.emit("addedfile", mockFile);
-                                                                                                          e.dropzone.emit("thumbnail", mockFile, thumbnailUrl);
-                                                                                                          e.dropzone.emit("complete", mockFile);
-                                                                                                          e.dropzone.emit("success", mockFile);
-                                                                                                          }-*/;
+		e.dropzone.files.push(mockFile);
+		e.dropzone.emit("addedfile", mockFile);
+		e.dropzone.emit("thumbnail", mockFile, thumbnailUrl);
+		e.dropzone.emit("complete", mockFile);
+		e.dropzone.emit("success", mockFile);
+    }-*/;
 
     /**
      * Return information about particular file added to dropzone.
      *
-     * @param i index of the file
+     * @param index of the file
      * @return file information
      */
-    public File getFile(int i) {
-        return getFilesNative(getElement()).get(i);
+    public File getFile(int index) {
+        return getFilesNative(getElement()).get(index);
     }
 
     /**
@@ -148,114 +152,113 @@ public class Dropzone extends Composite {
      * @return array of {@link FileJS} elements
      */
     private native JsArray<FileJS> getFilesNative(Element e) /*-{
-                                                             return e.dropzone.files;
-                                                             }-*/;
+		return e.dropzone.files;
+    }-*/;
 
     private native void initDropzone(Element e, DropzoneOptions options, DropzoneEventHandler handler,
         DropzoneDictonary dictionary)
-        /*-{
-    //if there is a dictionary, iterate over it and transfer the values
+    /*-{
+		//if there is a dictionary, iterate over it and transfer the values
 
+		if (dictionary) {
+			for ( var key in dictionary) {
+				if (dictionary.hasOwnProperty(key)) {
+					options[key] = dictionary[key];
+				}
+			}
+		}
 
-    if (dictionary) {
-    for ( var key in dictionary) {
-    if (dictionary.hasOwnProperty(key)) {
-    options[key] = dictionary[key];
-    }
-    }
-    }
+		var dropzone = new $wnd.Dropzone(e, options);
 
-    var dropzone = new $wnd.Dropzone(e, options);
+		//If not loaded, don't add the handlers.
+		if (!(dropzone instanceof $wnd.Dropzone)) {
+			return;
+		}
+		//I'm loaded, add the eventHandlers
 
-    //If not loaded, don't add the handlers.
-    if (!(dropzone instanceof $wnd.Dropzone)) {
-    return;
-    }
-    //I'm loaded, add the eventHandlers
+		//TODO: refactor this to another method
 
-    //TODO: refactor this to another method
+		if (this.@com.github.andrezimmermann.dropzone.client.Dropzone::handler) {
 
-    if (this.@com.github.andrezimmermann.dropzone.client.Dropzone::handler) {
+			dropzone
+					.on(
+							"addedfile",
+							function(file) {
+								handler.@com.github.andrezimmermann.dropzone.client.event.DropzoneEventHandler::onAddedFile(Lcom/github/andrezimmermann/dropzone/client/interfaces/File;)(file);
+							});
+			dropzone
+					.on(
+							"removedfile",
+							function(file) {
+								handler.@com.github.andrezimmermann.dropzone.client.event.DropzoneEventHandler::onRemovedfile(Lcom/github/andrezimmermann/dropzone/client/interfaces/File;)(file);
+							});
+			dropzone
+					.on(
+							"thumbnail",
+							function(file, dataUri) {
+								handler.@com.github.andrezimmermann.dropzone.client.event.DropzoneEventHandler::onThumbnail(Lcom/github/andrezimmermann/dropzone/client/interfaces/File;Ljava/lang/String;)(file,dataUri);
+							});
+			dropzone
+					.on(
+							"error",
+							function(file, message, xhrObject) {
+								handler.@com.github.andrezimmermann.dropzone.client.event.DropzoneEventHandler::onError(Lcom/github/andrezimmermann/dropzone/client/interfaces/File;Ljava/lang/String;Lcom/github/andrezimmermann/dropzone/client/interfaces/XHRObjet;)(file,message,xhrObject);
+							});
+			dropzone
+					.on(
+							"processing",
+							function(file) {
+								handler.@com.github.andrezimmermann.dropzone.client.event.DropzoneEventHandler::onProcessing(Lcom/github/andrezimmermann/dropzone/client/interfaces/File;)(file);
+							});
+			dropzone
+					.on(
+							"uploadprogress",
+							function(file, progress, bytesSent) {
+								handler.@com.github.andrezimmermann.dropzone.client.event.DropzoneEventHandler::onUploadProgress(Lcom/github/andrezimmermann/dropzone/client/interfaces/File;II)(file,progress,bytesSent);
+							});
+			dropzone
+					.on(
+							"sending",
+							function(file, xhrObject, formData) {
+								handler.@com.github.andrezimmermann.dropzone.client.event.DropzoneEventHandler::onSending(Lcom/github/andrezimmermann/dropzone/client/interfaces/File;Lcom/github/andrezimmermann/dropzone/client/interfaces/FormData;Lcom/github/andrezimmermann/dropzone/client/interfaces/XHRObjet;)(file,xhrObject,formData);
+							});
 
-    dropzone
-    .on(
-    "addedfile",
-    function(file) {
-    handler.@com.github.andrezimmermann.dropzone.client.event.DropzoneEventHandler::onAddedFile(Lcom/github/andrezimmermann/dropzone/client/interfaces/File;)(file);
-    });
-    dropzone
-    .on(
-    "removedfile",
-    function(file) {
-    handler.@com.github.andrezimmermann.dropzone.client.event.DropzoneEventHandler::onRemovedfile(Lcom/github/andrezimmermann/dropzone/client/interfaces/File;)(file);
-    });
-    dropzone
-    .on(
-    "thumbnail",
-    function(file, dataUri) {
-    handler.@com.github.andrezimmermann.dropzone.client.event.DropzoneEventHandler::onThumbnail(Lcom/github/andrezimmermann/dropzone/client/interfaces/File;Ljava/lang/String;)(file,dataUri);
-    });
-    dropzone
-    .on(
-    "error",
-    function(file, message, xhrObject) {
-    handler.@com.github.andrezimmermann.dropzone.client.event.DropzoneEventHandler::onError(Lcom/github/andrezimmermann/dropzone/client/interfaces/File;Ljava/lang/String;Lcom/github/andrezimmermann/dropzone/client/interfaces/XHRObjet;)(file,message,xhrObject);
-    });
-    dropzone
-    .on(
-    "processing",
-    function(file) {
-    handler.@com.github.andrezimmermann.dropzone.client.event.DropzoneEventHandler::onProcessing(Lcom/github/andrezimmermann/dropzone/client/interfaces/File;)(file);
-    });
-    dropzone
-    .on(
-    "uploadprogress",
-    function(file, progress, bytesSent) {
-    handler.@com.github.andrezimmermann.dropzone.client.event.DropzoneEventHandler::onUploadProgress(Lcom/github/andrezimmermann/dropzone/client/interfaces/File;II)(file,progress,bytesSent);
-    });
-    dropzone
-    .on(
-    "sending",
-    function(file, xhrObject, formData) {
-    handler.@com.github.andrezimmermann.dropzone.client.event.DropzoneEventHandler::onSending(Lcom/github/andrezimmermann/dropzone/client/interfaces/File;Lcom/github/andrezimmermann/dropzone/client/interfaces/FormData;Lcom/github/andrezimmermann/dropzone/client/interfaces/XHRObjet;)(file,xhrObject,formData);
-    });
+			dropzone
+					.on(
+							"success",
+							function(file, response) {
+								handler.@com.github.andrezimmermann.dropzone.client.event.DropzoneEventHandler::onSuccess(Lcom/github/andrezimmermann/dropzone/client/interfaces/File;Ljava/lang/String;)(file,response);
+							});
 
-    dropzone
-    .on(
-    "success",
-    function(file, response) {
-    handler.@com.github.andrezimmermann.dropzone.client.event.DropzoneEventHandler::onSuccess(Lcom/github/andrezimmermann/dropzone/client/interfaces/File;Ljava/lang/String;)(file,response);
-    });
+			dropzone
+					.on(
+							"complete",
+							function(file) {
+								handler.@com.github.andrezimmermann.dropzone.client.event.DropzoneEventHandler::onComplete(Lcom/github/andrezimmermann/dropzone/client/interfaces/File;)(file);
+							});
 
-    dropzone
-    .on(
-    "complete",
-    function(file) {
-    handler.@com.github.andrezimmermann.dropzone.client.event.DropzoneEventHandler::onComplete(Lcom/github/andrezimmermann/dropzone/client/interfaces/File;)(file);
-    });
+			dropzone
+					.on(
+							"canceled",
+							function(file) {
+								handler.@com.github.andrezimmermann.dropzone.client.event.DropzoneEventHandler::onCancelled(Lcom/github/andrezimmermann/dropzone/client/interfaces/File;)(file);
+							});
 
-    dropzone
-    .on(
-    "canceled",
-    function(file) {
-    handler.@com.github.andrezimmermann.dropzone.client.event.DropzoneEventHandler::onCancelled(Lcom/github/andrezimmermann/dropzone/client/interfaces/File;)(file);
-    });
+			dropzone
+					.on(
+							"maxfilesreached",
+							function(file) {
+								handler.@com.github.andrezimmermann.dropzone.client.event.DropzoneEventHandler::onMaxFilesReached(Lcom/github/andrezimmermann/dropzone/client/interfaces/File;)(file);
+							});
 
-    dropzone
-    .on(
-    "maxfilesreached",
-    function(file) {
-    handler.@com.github.andrezimmermann.dropzone.client.event.DropzoneEventHandler::onMaxFilesReached(Lcom/github/andrezimmermann/dropzone/client/interfaces/File;)(file);
-    });
+			dropzone
+					.on(
+							"maxfilesexceeded",
+							function(file) {
+								handler.@com.github.andrezimmermann.dropzone.client.event.DropzoneEventHandler::onMaxFilesExceeded(Lcom/github/andrezimmermann/dropzone/client/interfaces/File;)(file);
+							});
 
-    dropzone
-    .on(
-    "maxfilesexceeded",
-    function(file) {
-    handler.@com.github.andrezimmermann.dropzone.client.event.DropzoneEventHandler::onMaxFilesExceeded(Lcom/github/andrezimmermann/dropzone/client/interfaces/File;)(file);
-    });
-
-    }
+		}
 
     }-*/;
 
@@ -271,6 +274,26 @@ public class Dropzone extends Composite {
     }
 
     /**
+     *  Checks how many files are currently uploading,
+     *  and if it’s less than <code>options.parallelUploads</code>,
+     *  <code>.processFile(file)</code> is called.
+     *
+     *  <p>
+     *  If you set autoProcessQueue to <code>false</code>, then <code>.processQueue()</code> is
+     *  never called implicitly.
+     *  This means that you have to call it yourself when
+     *  you want to upload all files currently queued.
+     *  </p>
+     */
+    public void processQueue() {
+        processQueueNative(getElement());
+    }
+
+    private native void processQueueNative(Element e)/*-{
+		e.dropzone.processQueue();
+    }-*/;
+
+    /**
      * Removes all files from dropzone.
      */
     public void removeAllFiles() {
@@ -283,8 +306,8 @@ public class Dropzone extends Composite {
      * @param e dropzone element
      */
     private native void removeAllFilesNative(Element e) /*-{
-                                                        e.dropzone.removeAllFiles(true);
-                                                        }-*/;
+		e.dropzone.removeAllFiles(true);
+    }-*/;
 
     /**
      * Removes file at index i.
@@ -302,8 +325,8 @@ public class Dropzone extends Composite {
      * @param i index of the file to remove
      */
     private native void removeFileNative(Element e, int i) /*-{
-                                                           if (e.dropzone.files[i]!=null){
-                                                           e.dropzone.removeFile(e.dropzone.files[0]);
-                                                           }
-                                                           }-*/;
+		if (e.dropzone.files[i] != null) {
+			e.dropzone.removeFile(e.dropzone.files[0]);
+		}
+    }-*/;
 }
