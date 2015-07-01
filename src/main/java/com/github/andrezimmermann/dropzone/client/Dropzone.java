@@ -341,7 +341,7 @@ public class Dropzone extends Composite {
 	 */
 	private native void removeFileNative(Element e, int i) /*-{
 		if (e.dropzone.files[i] != null) {
-			e.dropzone.removeFile(e.dropzone.files[0]);
+			e.dropzone.removeFile(e.dropzone.files[i]);
 		}
     }-*/;
 }
