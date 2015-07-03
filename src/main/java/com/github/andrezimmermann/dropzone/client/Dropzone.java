@@ -97,7 +97,7 @@ public class Dropzone extends Composite {
 		var mockFile = {
 			name : fileName,
 			size : fileSize,
-			status : "sucess"
+			status : @com.github.andrezimmermann.dropzone.client.data.FileConstants::SUCCESS
 		};
 
 		e.dropzone.files.push(mockFile);
