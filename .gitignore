@@ -3,4 +3,6 @@
 /.settings/
 .project
 /bin/
-/bin/
+/.idea/
+/gwt-unitCache/
+/war/
