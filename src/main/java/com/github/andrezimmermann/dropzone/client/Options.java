@@ -142,12 +142,12 @@ class Options extends JavaScriptObject implements DropzoneOptions {
 
     @Override
     public final native void setThumbnailHeight(int height) /*-{
-		this.height = height;
+		this.thumbnailHeight = height;
     }-*/;
 
     @Override
     public final native void setThumbnailWidth(int width) /*-{
-		this.width = width;
+		this.thumbnailWidth = width;
     }-*/;
 
     @Override
