@@ -344,4 +344,14 @@ public class Dropzone extends Composite {
 			e.dropzone.removeFile(e.dropzone.files[i]);
 		}
     }-*/;
+	
+	/**
+	 * Return dropzone options.
+	 * 
+	 * @return dropzone options.
+	 */
+	public native Options getOptions() /*-{
+		var e = this.@com.github.andrezimmermann.dropzone.client.Dropzone::getElement()();
+		return e.dropzone.options;
+	}-*/;
 }
