@@ -18,7 +18,7 @@ class MapOverlay extends JavaScriptObject {
     }
 
     public native final void put(String key, String value)/*-{
-		this.key = value;
+		this[key] = value;
     }-*/;
 
 }
