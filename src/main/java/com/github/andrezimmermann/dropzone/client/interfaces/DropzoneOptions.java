@@ -175,4 +175,12 @@ public interface DropzoneOptions {
    * @param height
    */
   void setThumbnailHeight(int height);
+  
+  /**
+   * Adds a parameter to the upload request. This is equivalent to adding a hidden input to a form.
+   * 
+   * @param name
+   * @param value
+   */
+  void addParameter(String name, String value);
 }

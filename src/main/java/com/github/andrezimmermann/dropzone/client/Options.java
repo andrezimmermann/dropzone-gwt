@@ -21,8 +21,12 @@ import com.google.gwt.dom.client.Element;
 class Options extends JavaScriptObject implements DropzoneOptions {
 
     protected final static native DropzoneOptions create()/*-{
-		return {};
-    }-*/;
+		return {
+			// remove svg tick and cross that conflict with dropzone-gwt's tick and cross
+			"previewTemplate" : "<div class=\"dz-preview dz-file-preview\">\n  <div class=\"dz-image\"><img data-dz-thumbnail /></div>\n  <div class=\"dz-details\">\n    <div class=\"dz-size\"><span data-dz-size></span></div>\n    <div class=\"dz-filename\"><span data-dz-name></span></div>\n  </div>\n  <div class=\"dz-progress\"><span class=\"dz-upload\" data-dz-uploadprogress></span></div>\n  <div class=\"dz-error-message\"><span data-dz-errormessage></span></div>\n  <div class=\"dz-success-mark\">\n   </div>\n  <div class=\"dz-error-mark\">\n </div>\n</div>",
+			"params" : {}
+		};
+	}-*/;
 
     protected Options() {
     }
@@ -159,5 +163,10 @@ class Options extends JavaScriptObject implements DropzoneOptions {
     public final native void setUrl(String url) /*-{
 		this.url = url;
     }-*/;
+
+	@Override
+	public final native void addParameter(String name, String value)/*-{
+		this.params[name] = value;
+	}-*/;
 
 }
